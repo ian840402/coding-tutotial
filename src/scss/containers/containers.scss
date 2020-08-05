@@ -1,9 +1,14 @@
+.title {
+  font-size: 28px;
+  margin: 10px;
+}
+
 .rule {
-  padding: 20px;
+  margin: 20px;
   ul {
     li {
       font-size: 20px;
-      padding: 10px 0px;
+      margin: 10px 0px;
 
       &.plus {
         color: #ff0000;
@@ -28,13 +33,13 @@
   font-weight: bolder;
   cursor: pointer;
 
-  &:nth-child(2) {
+  &:nth-child(3) {
     background-color: #ff0000;
   }
-  &:nth-child(3) {
+  &:nth-child(4) {
     background-color: #0000ff;
   }
-  &:nth-child(4) {
+  &:nth-child(5) {
     background-color: #00ff00;
   }
 }
