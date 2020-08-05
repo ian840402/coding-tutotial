@@ -5,4 +5,13 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Document
   body
-    h1 Template
+    .rule
+      ul
+        li 1. 區塊一點擊後在瀏覽器的 js 控制台 (console) 裡面顯示 '點擊了一次' 的字樣
+        li 2. 區塊二點擊後在瀏覽器的 js 控制台 (console) 裡面顯示 '點擊了 n 次' 的字樣
+        li.plus *. 區塊三點及後會在下方新增新增區塊，並顯示這是第 n 個新增的區塊
+      .description 紅字為額外題目
+    #block-1.block 區塊一
+    #block-2.block 區塊二
+    #block-3.block 區塊三
+    #block-wrap
