@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+  body
+    .title 第一週課題 & 實作練習
+    .rule
+      ul
+        li 1. 可以玩，基本的規則和功能都要有
+        li 2. 贏的時候彈出一個視窗告你誰贏了
+        li 3. 我要可以重新開始
+      .description 紅字為額外題目
+    .ooxx-game
+      .reset-btn 重新開始
+      .now-user-wrapper 現在輪到：
+        span.now-user
+      .row-wrapper
+        .row.top
+          .grid(data-value="1")
+          .grid(data-value="2")
+          .grid(data-value="3")
+        .row.middle
+          .grid(data-value="4")
+          .grid(data-value="5")
+          .grid(data-value="6")
+        .row.bottom
+          .grid(data-value="7")
+          .grid(data-value="8")
+          .grid(data-value="9")

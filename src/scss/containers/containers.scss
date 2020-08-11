@@ -54,3 +54,31 @@
     border: 1px solid #000000;
   }
 }
+
+
+.ooxx-game {
+  .row {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #000000;
+    width: 302px;
+    height: 101px;
+  }
+  
+  .row:last-child {
+    border: 0;
+  }
+
+  .row .grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-right: 1px solid #000000;
+  }
+
+  .row .grid:last-child {
+    border: 0;
+  }
+}
