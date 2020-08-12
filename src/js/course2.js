@@ -1,12 +1,16 @@
+const smallGame = document.querySelector('.small-game')
 const gridDom = document.querySelectorAll('.grid')
-const nowPlayer = document.querySelector('.now-user')
-const resetBtn = document.querySelector('.reset-btn')
-const player_1 = '一號玩家'
-const player_2 = '二號玩家'
-
-nowPlayer.innerHTML = player_1
-
-const winnerRule = [
+const nowPlayDom = document.querySelector('.now-user')
+const changePlayerNameBlock = document.querySelector('.change-player-block')
+const resetBtn = document.querySelector('#reset-btn')
+const changePlayerNameBtn = document.querySelector('#change-player-btn')
+const changePlayerNameConfirmBtn = document.querySelector('#confirm-btn')
+const changePlayerNameCancelBtn = document.querySelector('#cancel-btn')
+const playerInput1 = document.querySelector('#player-1')
+const playerInput2 = document.querySelector('#player-2')
+const player1SelectData = []
+const player2SelectData = []
+const winnerRule = [    // 勝利條件
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9],
@@ -17,10 +21,22 @@ const winnerRule = [
   [3, 5, 7]
 ]
 
-const player1Data = []
-const player2Data = []
-
+let player1 = ''
+let player2 = ''
 let turn = 0
+
+// 初始化函式
+const init = () => {
+  turn = 0
+  player1SelectData.length = 0
+  player2SelectData.length = 0
+  getPlayerName()
+  gridDom.forEach((dom) => {
+    dom.innerHTML = ''
+    dom.removeEventListener('click', gridDomClickHandler, false)
+    dom.addEventListener('click', gridDomClickHandler, { once: true })
+  })
+}
 
 // 檢查是否符合獲勝條件
 const winnerCheck = (playerData) => {
@@ -39,38 +55,49 @@ const winnerCheck = (playerData) => {
 const gridDomClickHandler = (e) => {
   if (turn < 10) {
     const value = Number(e.target.dataset.value)
-    const isPlayerOne = turn % 2 === 0
+    const isPlayerOne = turn % 2 === 1
     let isWin = false
-    e.target.innerHTML = isPlayerOne ? 'O' : 'X'
-    isPlayerOne ? player1Data.push(value) : player2Data.push(value)
-    isWin = isPlayerOne ? winnerCheck(player1Data) : winnerCheck(player2Data)
-    nowPlayer.innerHTML = isPlayerOne ? player_1 : player_2
-    turn ++
+    e.target.innerHTML = isPlayerOne ? 'X' : 'O'
+    isPlayerOne ? player1SelectData.push(value) : player2SelectData.push(value)
+    isWin = isPlayerOne ? winnerCheck(player1SelectData) : winnerCheck(player2SelectData)
+    nowPlayDom.innerHTML = isPlayerOne ? player1 : player2
     if (isWin) {
       turn = 10
-      nowPlayer.innerHTML = '遊戲結束'
-      alert(`${nowPlayer.innerHTML} 獲勝！`)
+      alert(`${nowPlayDom.innerHTML} 獲勝！`)
+      nowPlayDom.innerHTML = '遊戲結束'
     }
     if (!isWin && turn === 8) {
+      nowPlayDom.innerHTML = '遊戲結束'
       alert('遊戲結束！')
     }
+    turn ++
   }
 }
 
-const resetBtnClickHandler = (e) => {
-  turn = 0
-  player1Data.length = 0
-  player2Data.length = 0
-  nowPlayer.innerHTML = player_1
-  gridDom.forEach((dom) => {
-    dom.innerHTML = ''
-    dom.removeEventListener('click', gridDomClickHandler, false)
-    dom.addEventListener('click', gridDomClickHandler, { once: true })
-  })
+// 更改使用者名稱
+const getPlayerName = () => {
+  player1 = playerInput1.value !== '' ? playerInput1.value : '玩家一'
+  player2 = playerInput2.value !== '' ? playerInput2.value : '玩家二'
+  nowPlayDom.innerHTML = turn % 2 === 0 ? player1 : player2
 }
 
-gridDom.forEach((dom) => {
-  dom.addEventListener('click', gridDomClickHandler, { once: true })
-})
+// 初始化
 
-resetBtn.addEventListener('click', resetBtnClickHandler, false)
+if (smallGame) {
+  init()
+  
+  resetBtn.addEventListener('click', init, false)
+  
+  changePlayerNameBtn.addEventListener('click', (e) => {
+    changePlayerNameBlock.classList.add('show')
+  })
+  
+  changePlayerNameConfirmBtn.addEventListener('click', (e) => {
+    getPlayerName()
+    changePlayerNameBlock.classList.remove('show')
+  }, false)
+  
+  changePlayerNameCancelBtn.addEventListener('click', (e) => {
+    changePlayerNameBlock.classList.remove('show')
+  })
+}

@@ -1,3 +1,5 @@
+// 第一週課題
+
 const blockOne = document.querySelector('#block-1')
 const blockTwo = document.querySelector('#block-2')
 const blockThree = document.querySelector('#block-3')
@@ -21,8 +23,10 @@ const blockThreeClickHandler = (e) => {
   blockWrap.appendChild(newDom)
 }
 
-blockOne.addEventListener('click', blockOneClickHandler, false)
-
-blockTwo.addEventListener('click', blockTwoClickHandler, false)
-
-blockThree.addEventListener('click', blockThreeClickHandler, false)
+if (blockOne && blockTwo && blockThree && blockWrap) {
+  blockOne.addEventListener('click', blockOneClickHandler, false)
+  
+  blockTwo.addEventListener('click', blockTwoClickHandler, false)
+  
+  blockThree.addEventListener('click', blockThreeClickHandler, false)
+}

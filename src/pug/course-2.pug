@@ -5,17 +5,22 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Document
   body
-    .title 第一週課題 & 實作練習
+    .title 第二週課題 & 井字遊戲實作練習
     .rule
       ul
-        li 1. 可以玩，基本的規則和功能都要有
-        li 2. 贏的時候彈出一個視窗告你誰贏了
-        li 3. 我要可以重新開始
+        li 1. 先連成一條線的玩家勝利
+        li 2. 每個位置只能點擊一次
+        li 3. 當有玩家獲勝時，跳出提示訊息告知哪位玩家獲勝
+        li 4. 有玩家勝利之後就不可以在點擊
+        li.plus * 可以重新開始
+        li.plus * 可以更改玩家的名稱
       .description 紅字為額外題目
-    .ooxx-game
-      .reset-btn 重新開始
-      .now-user-wrapper 現在輪到：
-        span.now-user
+    .small-game
+      .info-block
+        .now-user-wrapper 現在輪到：
+          span.now-user
+        #change-player-btn.info-btn.btn 更改玩家名稱
+        #reset-btn.info-btn.btn 重新開始
       .row-wrapper
         .row.top
           .grid(data-value="1")
@@ -29,3 +34,15 @@ html(lang="en")
           .grid(data-value="7")
           .grid(data-value="8")
           .grid(data-value="9")
+      .change-player-block
+        .change-player-wrapper
+          .block-title 更改名稱
+          .player
+            label(for="player-1") 玩家一：
+            input(type="text" placeholder="預設名稱為玩家一")#player-1
+          .player
+            label(for="player-2") 玩家二：
+            input(type="text" placeholder="預設名稱為玩家二")#player-2
+          .control-btn-wrapper
+            #confirm-btn.control-btn.btn 確認
+            #cancel-btn.control-btn.btn 取消
