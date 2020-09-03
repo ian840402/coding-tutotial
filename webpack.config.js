@@ -42,7 +42,6 @@ module.exports = {
     contentBase: './dist',
     progress: true,
     host: '0.0.0.0',
-    port: 8080,
     open: true,
   },
   module: {

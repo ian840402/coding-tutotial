@@ -1,62 +1,51 @@
-const resultDom = document.querySelector('#computer-result')
-const btnDom = document.querySelectorAll('.computer-btn__item .content')
-const operator = ['+', '-', '*', '/']
-let step = ''
-let nowDigit = ''
-let prevDigit = ''
+const form = document.querySelector('#form')
 
-const btnClickHandler = (e) => {
-  const value = e.target.innerHTML
-  if (operator.includes(value)) {
-    // 解決第二次點擊問題
-    prevDigit = nowDigit
-    nowDigit = ''
-    resultDom.innerHTML = '0'
-    step = value
-  } else if (value === '=') {
-    compute()
-  } else if (value === 'AC') {
-    nowDigit = ''
-    prevDigit = ''
-    step = ''
-    resultDom.innerHTML = '0'
-  } else {
-    nowDigit += value
-    resultDom.innerHTML = nowDigit
-  }
+const formName = document.querySelector('#name')
+const formEmail = document.querySelector('#email')
+const formPhone = document.querySelector('#phone')
+const formMain = document.querySelector('#main')
+const formSubmitButton = document.querySelector('#form-submit-btn')
+const formResetButton = document.querySelector('#form-reset-btn')
+const resultName = document.querySelector('#name-value')
+const resultEmail = document.querySelector('#email-value')
+const resultPhone = document.querySelector('#phone-value')
+const resultMain = document.querySelector('#main-value')
+
+const getFormItemValue = (dom) => {
+  if (!dom.value) dom.classList.add('error')
+  return dom.value
 }
 
-const compute = () => {
-  if (!!step) {
-    switch (step) {
-      case '+':
-        nowDigit = Number(prevDigit) + Number(nowDigit)
-        prevDigit = ''
-        resultDom.innerHTML = nowDigit.toString()
-        step = ''
-        break
-      case '-':
-        nowDigit = Number(prevDigit) - Number(nowDigit)
-        prevDigit = ''
-        resultDom.innerHTML = nowDigit.toString()
-        step = ''
-        break
-      case '*':
-        nowDigit = Number(prevDigit) * Number(nowDigit)
-        prevDigit = ''
-        resultDom.innerHTML = nowDigit.toString()
-        step = ''
-        break
-      case '/':
-        nowDigit = Number(prevDigit) / Number(nowDigit)
-        prevDigit = ''
-        resultDom.innerHTML = nowDigit.toString()
-        step = ''
-        break
-    }
-  }
+const setFormResult = (obj) => {
+  resultName.innerHTML = obj.name
+  resultEmail.innerHTML = obj.email
+  resultPhone.innerHTML = obj.phone
+  resultMain.innerHTML = obj.main
 }
 
-btnDom.forEach((dom) => {
-  dom.addEventListener('click', btnClickHandler, false)
-})
+const formSubmitHandler = (e) => {
+  const data = {
+    name: getFormItemValue(formName),
+    email: getFormItemValue(formEmail),
+    phone: getFormItemValue(formPhone),
+    main: getFormItemValue(formMain)
+  }
+
+  setFormResult(data)
+}
+
+const formResetHandler = (e) => {
+  formName.value = ''
+  formEmail.value = ''
+  formPhone.value = ''
+  formMain.value = ''
+  resultName.innerHTML = ''
+  resultEmail.innerHTML = ''
+  resultPhone.innerHTML = ''
+  resultMain.innerHTML = ''
+}
+
+if (form) {
+  formSubmitButton.addEventListener('click', formSubmitHandler, false)
+  formResetButton.addEventListener('click', formResetHandler, false)
+}

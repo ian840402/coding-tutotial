@@ -5,14 +5,41 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Document
   body
-    .title 第一週課題 & 實作練習
+    .title 第三週課題 & 實作練習
     .rule
       ul
-        li 1. 區塊一點擊後在瀏覽器的 js 控制台 (console) 裡面顯示 '點擊了一次' 的字樣
-        li 2. 區塊二點擊後在瀏覽器的 js 控制台 (console) 裡面顯示 '點擊了 n 次' 的字樣
-        li.plus *. 區塊三點及後會在下方新增新增區塊，並顯示這是第 n 個新增的區塊
-      .description 紅字為額外題目
-    #block-1.block 區塊一
-    #block-2.block 區塊二
-    #block-3.block 區塊三
-    #block-wrap
+        li 1. 建立一個表單，要包含以下欄位：姓名, Email, 電話, 主旨
+        li 2. 建立一個結果區塊，把表單的內容呈現在下方
+        li 3. 可以清除表單與結果
+        //- li.plus *. 區塊三點及後會在下方新增新增區塊，並顯示這是第 n 個新增的區塊
+      //- .description 紅字為額外題目
+    .form-block
+      form#from.form
+        .form__item
+          label(for="name").form__item__label 姓名
+          input(type="text" placeholder="請輸入姓名").form__item__input#name
+        .form__item
+          label(for="email").form__item__label Email
+          input(type="text" placeholder="請輸入Email").form__item__input#email
+        .form__item
+          label(for="phone").form__item__label 電話
+          input(type="text" placeholder="請輸入電話").form__item__input#phone
+        .form__item
+          label(for="main").form__item__label 主旨
+          textarea(cols="30", rows="10" placeholder="請輸入主旨").form__item__input#main
+      button#form-submit-btn 送出
+      button#form-reset-btn 清除
+    .result-block
+      .result
+        .result__item
+          .result__item__title 姓名
+          #name-value.result__item__value
+        .result__item
+          .result__item__title Email
+          #email-value.result__item__value
+        .result__item
+          .result__item__title 電話
+          #phone-value.result__item__value
+        .result__item
+          .result__item__title 主旨
+          #main-value.result__item__value
