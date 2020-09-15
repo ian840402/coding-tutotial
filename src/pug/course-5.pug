@@ -5,20 +5,21 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Document
   body
-    //- .title 第四週課題 & Todo List 實作
-    //- .rule
-    //-   ul
-    //-     li 1. 要有一個輸入框可以新增項目
-    //-     li 2. 輸入框不可為空
-    //-     li 3. 下方呈現現有的項目
-    //-     li 4. 可以針對單一項目去做刪除
-    //-     li.plus *. 可以針對單一項目做編輯 
-    //-   .description 紅字為額外題目
-    .form-todo-list
-      form#todo-list-form.form
-        .form__item
-          label(for="todo-item").form__item__label 內容
-          input(type="text" placeholder="請輸入內容").form__item__input#todo-item
-      button#form-submit-btn 新增
-    .todo-list-block
-      ul.todo-list
+    .forth-course
+      .title 第四週課題 & Todo List 實作
+      .rule
+        ul
+          li 1. 要有一個輸入框可以新增項目
+          li 2. 輸入框不可為空
+          li 3. 下方呈現現有的項目
+          li 4. 可以針對單一項目去做刪除
+          li.plus *. 可以針對單一項目做編輯 
+        .description 紅字為額外題目
+      .form-todo-list
+        form#todo-list-form.form
+          .form__item
+            label(for="todo-item").form__item__label 請輸入內容：
+            input(type="text" placeholder="請輸入內容").form__item__input#todo-item
+        button#form-submit-btn 新增
+      .todo-list-block
+        ul.todo-list

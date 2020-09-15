@@ -1,0 +1,81 @@
+.forth-course {
+  text-align: center;
+
+  .form-todo-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    padding-top: 50px;
+    margin: 0 auto;
+
+    .form {
+      &__item {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    #form-submit-btn {
+      margin-left: 10px;
+    }
+  }
+
+  .todo-list-block {
+    .todo-list {
+      &__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 15px 0px;
+
+        .item-value {
+          display: block;
+        }
+        .item-input-wrapper {
+          display: none;
+        }
+
+        .action {
+          display: flex;
+          align-items: center;
+          margin-left: 15px;
+
+          .save-btn {
+            display: none;
+          }
+
+          .edit-btn {
+            display: block;
+          }
+
+          .remove-btn {
+            margin-left: 15px;
+          }
+        }
+
+        &._edit {
+          .item-value {
+            display: none;
+          }
+          .item-input-wrapper {
+            display: block;
+          }
+          .action {
+            margin-left: 15px;
+  
+            .save-btn {
+              display: block;
+            }
+  
+            .edit-btn {
+              display: none;
+            }
+          }
+        }
+      }
+    } 
+  }
+}

@@ -4,6 +4,7 @@ const fromTodoItem = document.querySelector('#todo-item')
 const fromSubmitBtn = document.querySelector('#form-submit-btn')
 const todoList = document.querySelector('.todo-list')
 const todoListData = []
+const idLength = 4
 
 // 隨機 id 產生器
 const idCreator = (time) => {
@@ -23,14 +24,14 @@ const isIdExist = (data, id) => {
 
 // 新增項目陣列
 const setNewData = (value) => {
-  let id = idCreator(4)
+  let id = idCreator(idLength)
   while (isIdExist(todoListData, id)) {
-    id = idCreator(4)
+    id = idCreator(idLength)
   }
   todoListData.push({ id, value })
 }
 
-// 生成項目結果
+// 生成項目
 const createNewTodoItem = (wrap, data) => {
   wrap.innerHTML = ''
 
@@ -40,8 +41,8 @@ const createNewTodoItem = (wrap, data) => {
 
     newDom.innerHTML = `
       <div class="item-value">${item.value}</div>
-      <div class="item-input>
-        <input type="text" value="${item.value}">
+      <div class="item-input-wrapper">
+        <input class="item-input" type="text" value="${item.value}" placeholder="請輸入內容">
       </div>
       <div class="action">
       <button class="save-btn">儲存</button>
@@ -51,28 +52,65 @@ const createNewTodoItem = (wrap, data) => {
     `
 
     newDom.querySelector('.remove-btn').addEventListener('click', () => {
-      removeItemHandler(data, item.id)
+      removeBtnClickHandler(data, item.id)
     }, false)
+
+    newDom.querySelector('.edit-btn').addEventListener('click', (e) => {
+      editBtnClickHandler(e)
+    },false)
+
+    newDom.querySelector('.save-btn').addEventListener('click', (e) => {
+      saveBtnClickHandler(e, item.id)
+    })
 
     wrap.appendChild(newDom)
   })
 }
 
 // 新增項目事件
-const submitClickHandler = () => {
+const submitBtnClickHandler = () => {
   const value = fromTodoItem.value
-  setNewData(value)
-  createNewTodoItem(todoList, todoListData)
+  if (value !== '') {
+    setNewData(value)
+    createNewTodoItem(todoList, todoListData)
+  } else {
+    alert('輸入不可為空！')
+  }
 }
 
 // 刪除項目事件
-const removeItemHandler = (data, id) => {
+const removeBtnClickHandler = (data, id) => {
   const newData = data.filter(item => item.id !== id)
   createNewTodoItem(todoList, newData)
 }
 
+// 編輯項目事件
+const editBtnClickHandler = (e) => {
+  const parentDom = e.target.parentElement.parentElement
+  parentDom.classList.add('_edit')
+}
+
+// 儲存修改事件
+const saveBtnClickHandler = (e, id) => {
+  const parentDom = e.target.parentElement.parentElement
+  const inputValue = parentDom.querySelector('.item-input').value
+
+  if (inputValue !== '') {
+    todoListData.forEach(item => {
+      if (item.id === id) {
+        item.value = inputValue
+      }
+    })
+    parentDom.classList.remove('_edit')
+  
+    createNewTodoItem(todoList, todoListData)
+  } else {
+    alert('輸入不可為空！')
+  }
+}
+
 if (condition) {
-  fromSubmitBtn.addEventListener('click', submitClickHandler, false)
+  fromSubmitBtn.addEventListener('click', submitBtnClickHandler, false)
 }
 
 // TODO: 編輯與防呆待完成！
