@@ -3,8 +3,8 @@ const condition = document.querySelector('#todo-list-form')
 const fromTodoItem = document.querySelector('#todo-item')
 const fromSubmitBtn = document.querySelector('#form-submit-btn')
 const todoList = document.querySelector('.todo-list')
-const todoListData = []
 const idLength = 4
+let todoListData = []
 
 // 隨機 id 產生器
 const idCreator = (time) => {
@@ -73,6 +73,7 @@ const submitBtnClickHandler = () => {
   if (value !== '') {
     setNewData(value)
     createNewTodoItem(todoList, todoListData)
+    fromTodoItem.value = ''
   } else {
     alert('輸入不可為空！')
   }
@@ -81,7 +82,8 @@ const submitBtnClickHandler = () => {
 // 刪除項目事件
 const removeBtnClickHandler = (data, id) => {
   const newData = data.filter(item => item.id !== id)
-  createNewTodoItem(todoList, newData)
+  todoListData = newData
+  createNewTodoItem(todoList, todoListData)
 }
 
 // 編輯項目事件
@@ -112,5 +114,3 @@ const saveBtnClickHandler = (e, id) => {
 if (condition) {
   fromSubmitBtn.addEventListener('click', submitBtnClickHandler, false)
 }
-
-// TODO: 編輯與防呆待完成！
